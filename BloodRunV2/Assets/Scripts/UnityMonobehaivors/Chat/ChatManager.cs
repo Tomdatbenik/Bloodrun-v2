@@ -15,7 +15,24 @@ public class ChatManager : MonoBehaviour
     public readonly Chat chat = new Chat();
 
     public static ChatMessage ChatMessage;
+
+    private static bool reconnectMessage = false;
     
+    private void Start()
+    {
+        if(!reconnectMessage)
+        {
+            reconnectMessage = true;
+
+            GameObject bloodrun = GameObject.Find("Bloodrun");
+            ConnectionManager ConnectionManager = bloodrun.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
+
+            Message message = new Message(ConnectionManager.Username, "Has connected", MessageType.CHAT);
+
+            ConnectionManager.connection.TcpClient.Sender.TrySend(message);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
