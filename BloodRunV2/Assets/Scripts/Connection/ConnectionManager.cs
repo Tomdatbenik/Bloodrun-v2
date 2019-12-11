@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class ConnectionManager : MonoBehaviour
 {
+    public static readonly SceneLogic sceneLogic = new SceneLogic();
+    public static readonly GameLogic gameLogic = new GameLogic();
+    public static readonly ChatLogic chatLogic = new ChatLogic();
+    public static readonly PlayerLogic playerLogic = new PlayerLogic();
 
-    public string Username;
+    public static string Username;
     public string IP;
 
     public static Connection connection;
@@ -67,11 +71,10 @@ public class ConnectionManager : MonoBehaviour
         connection.TcpClient.Close();        
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Executor.StartExecuting();
     }
-
 
     #region DoNotDestroy
     /// <summary>Static reference to the instance of our DataManager</summary>
