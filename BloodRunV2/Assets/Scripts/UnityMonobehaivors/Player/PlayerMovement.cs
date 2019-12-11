@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerInfo player = new PlayerInfo();
 
-        player.username = ConnectionManager.Username;
+        player.username = ConnectionManager.CurrentUsername;
 
         player.transform.location.x = transform.position.x.ToString();
         player.transform.location.y = transform.position.y.ToString();

@@ -10,9 +10,10 @@ public class ConnectionManager : MonoBehaviour
     public static readonly ChatLogic chatLogic = new ChatLogic();
     public static readonly PlayerLogic playerLogic = new PlayerLogic();
 
-    public static string Username;
+    public static string CurrentUsername;
+
+    public string Username;
     public string IP;
-    public string username;
 
     public static Connection connection;
 
@@ -22,7 +23,7 @@ public class ConnectionManager : MonoBehaviour
 
     private void Start()
     {
-        Username = username;
+        CurrentUsername = Username;
         ReconnectButton.SetActive(false);
 
         connection = new Connection(IP);
