@@ -13,22 +13,20 @@ public class ChatManager : MonoBehaviour
     public TMP_InputField chatField;
 
     public readonly Chat chat = new Chat();
+
+    public static ChatMessage ChatMessage;
     
     // Update is called once per frame
     void Update()
     {
         ShowChatByKey();
         hideChatByKey();
-        addmessagedebugger();
         sendMessage();
-    }
 
-    private void addmessagedebugger()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(ChatMessage != null)
         {
-            ChatMessage mes = new ChatMessage("hoi", "mario", MessageType.CHAT);
-            AddMessageToChat(mes);
+            AddMessageToChat(ChatMessage);
+            ChatMessage = null;
         }
     }
 
@@ -38,13 +36,16 @@ public class ChatManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return) && chat.isOpen)
             {
-                ConnectionManager ConnectionManager = gameObject.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
+                GameObject bloodrun = GameObject.Find("Bloodrun");
+                ConnectionManager ConnectionManager = bloodrun.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
 
-                ChatMessage message = new ChatMessage(chatField.text, ConnectionManager.Username, MessageType.CHAT);
+                ChatMessage message = new ChatMessage(chatField.text, ConnectionManager.Username);
                 AddMessageToChat(message);
                 chatField.text = "";
                 chatBox.SetActive(false);
                 chat.isOpen = false;
+
+                ConnectionManager.connection.TcpClient.Sender.TrySend(new Message(ConnectionManager.Username, message.content, MessageType.CHAT));
             }
         }
     }

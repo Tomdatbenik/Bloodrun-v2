@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class MessageExecutor
 {
-    private SceneLogic sceneLogic = new SceneLogic();
-    private GameLogic GameLogic = new GameLogic();
+    private readonly SceneLogic sceneLogic = new SceneLogic();
+    private readonly GameLogic GameLogic = new GameLogic();
+    private readonly ChatLogic chatLogic = new ChatLogic();
 
     /// <summary>
     /// Thread where messages will be executed
@@ -46,8 +47,8 @@ public class MessageExecutor
                         case MessageType.GAME:
                             GameLogic.HandleGameMessage(message);
                             break;
-                        case MessageType.MOVE:
-
+                        case MessageType.CHAT:
+                            chatLogic.HandeChatMessage(message);
                             break;
                     }
                 }

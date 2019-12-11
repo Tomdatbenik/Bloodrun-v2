@@ -11,10 +11,9 @@ public class ChatMessage
    public MessageType messageType;
    public TextMeshProUGUI textObject;
 
-   public ChatMessage(string Content, string Sender, MessageType MessageType)
+   public ChatMessage(string Content, string Sender)
    {
       this.content = Content;
       this.sender = Sender;
-      this.messageType = MessageType;
    }
 }

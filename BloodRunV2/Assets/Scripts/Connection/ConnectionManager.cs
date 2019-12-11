@@ -8,7 +8,7 @@ public class ConnectionManager : MonoBehaviour
     public string Username;
     public string IP;
 
-    private Connection connection;
+    public static Connection connection;
 
     public static readonly MessageExecutor Executor = new MessageExecutor();
 
