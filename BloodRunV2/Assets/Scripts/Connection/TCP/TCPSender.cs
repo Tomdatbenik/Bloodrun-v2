@@ -14,18 +14,20 @@ public class TCPSender
         this.stream = stream;
     }
 
-    public void Send(Message message)
+    public bool TrySend(Message message)
     {
         //Send write
         if (this.stream.CanWrite)
         {
             byte[] data = Compressor.Compress(System.Text.Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(message)));
-            this.stream.Write(data, 0, data.Length);
-            this.stream.Flush();
+            stream.Write(data, 0, data.Length);
+            stream.Flush();
+            return true;
         }
         else
         {
             Debug.LogError("Sorry.  You cannot write to this NetworkStream.");
+            return false;
         }
     }
 

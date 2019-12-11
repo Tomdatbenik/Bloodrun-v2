@@ -11,25 +11,33 @@ public class TCPClient
     private NetworkStream stream;
     private TcpClient client;
     readonly int port;
-    private string server = "Localhost";
+    private string server;
 
     public TCPListener Listener { get => listener; set => listener = value; }
     public TCPSender Sender { get => sender; set => sender = value; }
 
-    public TCPClient(string server, TCPSender sender, TCPListener listener, int port = 10923)
+    public TCPClient(string server, int port)
     {
         this.port = port;
         this.server = server;
-        this.sender = sender;
-        this.listener = listener;
     }
 
     public void Connect()
     {
-        this.client = new TcpClient(server, port);
-        this.stream = client.GetStream();
+        //Set up client
+        client = new TcpClient(server, port);
 
-        this.sender = new TCPSender(this.stream);
+        //Get stream from client
+        stream = client.GetStream();
+
+        //Create sender to send messages to the server
+        sender = new TCPSender(this.stream);
+
+        //Create listener to listen to messages from server
+        listener = new TCPListener(this.stream);
+
+        //Start listenening
+        listener.StartListening();
     }
 
     public void Close()

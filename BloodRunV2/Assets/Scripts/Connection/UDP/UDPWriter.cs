@@ -1,18 +1,23 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
-public class UDPWriter : MonoBehaviour
+public class UDPWriter
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private UdpClient client;
+
+    public UDPWriter(UdpClient client)
     {
-        
+        this.client = client;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SendUdpMessage(Message message, string ServerIp = "localhost", int Port = 10922)
     {
-        
+        byte[] data = Compressor.Compress(System.Text.Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(message)));
+
+        client.Send(data, data.Length, ServerIp, Port);
     }
 }

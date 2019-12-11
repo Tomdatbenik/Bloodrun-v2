@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MessageType : MonoBehaviour
+public enum MessageType
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    PING = 0,
+    CONNECT = 1,
+    DISCONNECT = 2,
+    UDPREQUEST = 4,
+    MOVE = 3,
+    GAME = 5
 }
