@@ -29,15 +29,25 @@ public class LoadingManager : MonoBehaviour
 
     private bool AreAllPlayersConnected()
     {
-        for (int i = 0; i != playercount; i++)
+        if (GameManager.game != null)
         {
-            if(!players[i].Connected)
+            players = GameManager.game.GetPlayers;
+
+            if (players != null)
             {
-                return false;
+                for (int i = 0; i != playercount; i++)
+                {
+                    if (!players[i].Connected)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public void updateConnectIcon()

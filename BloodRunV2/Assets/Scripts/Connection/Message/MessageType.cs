@@ -9,5 +9,6 @@ public enum MessageType
     DISCONNECT = 2,
     UDPREQUEST = 4,
     MOVE = 3,
-    GAME = 5
+    GAME = 5,
+    CHAT = 7
 }
