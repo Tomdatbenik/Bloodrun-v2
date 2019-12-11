@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private ConnectionManager connectionManager;
-
     public static Game game;
 
     public GameObject Spawnpoint;
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour
     public void InitGame()
     {
         GameObject bloodrun = GameObject.Find("Bloodrun");
-        connectionManager = bloodrun.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
         SpawnPlayers();
     }
 
@@ -48,7 +45,7 @@ public class GameManager : MonoBehaviour
 
                 PlayerBodyData playerbodydata = GetPlayerBodyData(playerdata.Player);
 
-                if (player.username == connectionManager.Username)
+                if (player.username == ConnectionManager.Username)
                 {
                     cam.Follow = playerdata.Player.transform;
                     cam.LookAt = playerdata.Player.transform;
@@ -101,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsCurrentPlayer(PlayerInfo player)
     {
-        if(connectionManager.Username == player.username)
+        if(ConnectionManager.Username == player.username)
         {
             return true;
         }
