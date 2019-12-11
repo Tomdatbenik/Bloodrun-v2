@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Threading;
 using UnityEngine;
 
 public class TCPClient
@@ -35,8 +36,6 @@ public class TCPClient
 
         //Create listener to listen to messages from server
         listener = new TCPListener(this.stream);
-
-        //Start listenening
         listener.StartListening();
     }
 

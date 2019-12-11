@@ -20,7 +20,9 @@ public class UDPListener
         byte[] received = client.EndReceive(res, ref RemoteIpEndPoint);
 
         //Process codes
-        MessageExecutor.Messages.Add(Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(received))));
+        Message message = Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(received)));
+
+        ConnectionManager.Executor.Add(message); 
 
         ReceiveDataUDP();
     }

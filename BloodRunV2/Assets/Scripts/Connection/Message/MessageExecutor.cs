@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class MessageExecutor
 {
+    private SceneLogic sceneLogic = new SceneLogic();
 
     /// <summary>
     /// Thread where messages will be executed
@@ -14,39 +17,50 @@ public class MessageExecutor
     /// <summary>
     /// List of incomming Messages
     /// </summary>
-    public readonly static List<Message> Messages = new List<Message>();
+    private readonly List<Message> Messages = new List<Message>();
 
-    public void StartExecutingMessages()
+    public void Add(Message message)
     {
-        executeThread = new Thread(new ThreadStart(ExecuteMessages))
-        {
-            IsBackground = true
-        };
+        Messages.Add(message);
     }
 
     private void ExecuteMessages()
     {
+        List<Message> deletedMessages = new List<Message>();
+
         foreach(Message message in Messages)
         {
-            switch(message.getType())
+            if (message != null)
             {
-                case MessageType.CONNECT:
+                switch (message.getType())
+                {
+                    case MessageType.CONNECT:
+                        deletedMessages.Add(message);
+                        sceneLogic.LoadScene("Loading");
+                        break;
+                    case MessageType.PING:
 
-                    break;
-                case MessageType.PING:
+                        break;
+                    case MessageType.GAME:
 
-                    break;
-                case MessageType.GAME:
+                        break;
+                    case MessageType.MOVE:
 
-                    break;
-                case MessageType.MOVE:
-
-                    break;
+                        break;
+                }
             }
         }
 
-        ExecuteMessages();
+        foreach (Message message in deletedMessages)
+        {
+            Messages.Remove(message);
+        }
+
     }
 
+    public void StartExecuting()
+    {
+        ExecuteMessages();
+    }
 
 }

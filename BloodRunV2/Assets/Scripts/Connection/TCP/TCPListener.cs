@@ -9,6 +9,10 @@ public class TCPListener
 {
     Byte[] bytes = new Byte[1040];
     private NetworkStream stream;
+
+    /// <summary>
+    /// Thread where messages will be received
+    /// </summary>
     private Thread receiveThread;
 
     public TCPListener(NetworkStream stream)
@@ -25,7 +29,8 @@ public class TCPListener
         while ((stream.Read(bytes, 0, bytes.Length)) != 0)
         {
             Message message = Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(bytes)));
-            Debug.Log(message.toString());
+
+            ConnectionManager.Executor.Add(message);
         }
 
         TryReceiveTcpMessage();
@@ -34,7 +39,7 @@ public class TCPListener
     /// <summary>
     /// Try to receive a message otherwise stop listening.
     /// </summary>
-    private void TryReceiveTcpMessage()
+    public void TryReceiveTcpMessage()
     {
         try
         {
@@ -48,7 +53,7 @@ public class TCPListener
     }
 
     /// <summary>
-    /// Start listening
+    /// Start listeneing to incoming UDP messages
     /// </summary>
     public void StartListening()
     {

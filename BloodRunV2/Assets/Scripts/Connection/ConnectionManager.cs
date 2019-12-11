@@ -10,7 +10,7 @@ public class ConnectionManager : MonoBehaviour
 
     private Connection connection;
 
-    private MessageExecutor executor = new MessageExecutor();
+    public static readonly MessageExecutor Executor = new MessageExecutor();
 
     public GameObject ReconnectButton;
 
@@ -34,7 +34,6 @@ public class ConnectionManager : MonoBehaviour
         {
             ReconnectButton.SetActive(false);
             SendInitMessageToServer();
-            executor.StartExecutingMessages();
         }
         else
         {
@@ -50,6 +49,20 @@ public class ConnectionManager : MonoBehaviour
         {
             ReconnectButton.SetActive(true);
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        Message message = new Message(Username, "none", MessageType.DISCONNECT);
+
+        connection.TcpClient.Sender.TrySend(message);
+
+        connection.TcpClient.Close();        
+    }
+
+    private void Update()
+    {
+        Executor.StartExecuting();
     }
 
 
