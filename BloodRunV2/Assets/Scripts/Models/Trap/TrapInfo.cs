@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapInfo : ScriptableObject
+public class TrapInfo
 {
     public int id;
     public TransformInfo transform;

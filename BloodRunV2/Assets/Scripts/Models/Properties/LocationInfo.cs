@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class LocationInfo : ScriptableObject
+public class LocationInfo
 {
     public string x;
     public string y;

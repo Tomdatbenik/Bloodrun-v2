@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class ScaleInfo : ScriptableObject
+public class ScaleInfo
 {
     public string x;
     public string y;

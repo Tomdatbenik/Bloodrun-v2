@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationInfo : ScriptableObject
+public class RotationInfo
 {
     public string x;
     public string y;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfo : ScriptableObject
+public class PlayerInfo
 {
     public string username;
     public TransformInfo transform;
@@ -12,6 +12,12 @@ public class PlayerInfo : ScriptableObject
     {
         username = "";
         transform = new TransformInfo();
+    }
+
+    public PlayerInfo(string username, bool connected)
+    {
+        this.username = username;
+        Connected = connected;
     }
 
     public static PlayerInfo FromJson(Newtonsoft.Json.Linq.JToken jToken)

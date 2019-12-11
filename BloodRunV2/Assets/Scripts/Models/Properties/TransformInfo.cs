@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformInfo : ScriptableObject
+public class TransformInfo
 {
     public LocationInfo location;
     public RotationInfo rotation;

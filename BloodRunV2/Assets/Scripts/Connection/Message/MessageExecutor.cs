@@ -8,6 +8,7 @@ using UnityEngine;
 public class MessageExecutor
 {
     private SceneLogic sceneLogic = new SceneLogic();
+    private GameLogic GameLogic = new GameLogic();
 
     /// <summary>
     /// Thread where messages will be executed
@@ -26,36 +27,34 @@ public class MessageExecutor
 
     private void ExecuteMessages()
     {
-        List<Message> deletedMessages = new List<Message>();
-
-        foreach(Message message in Messages)
+        lock(Messages)
         {
-            if (message != null)
+            while (Messages.Count != 0)
             {
-                switch (message.getType())
+                Message message = Messages[0];
+
+                if (message != null)
                 {
-                    case MessageType.CONNECT:
-                        deletedMessages.Add(message);
-                        sceneLogic.LoadScene("Loading");
-                        break;
-                    case MessageType.PING:
+                    switch (message.getType())
+                    {
+                        case MessageType.CONNECT:
+                            sceneLogic.LoadScene("Loading");
+                            break;
+                        case MessageType.PING:
 
-                        break;
-                    case MessageType.GAME:
+                            break;
+                        case MessageType.GAME:
+                            GameLogic.HandleGameMessage(message);
+                            break;
+                        case MessageType.MOVE:
 
-                        break;
-                    case MessageType.MOVE:
-
-                        break;
+                            break;
+                    }
                 }
+
+                Messages.Remove(message);
             }
         }
-
-        foreach (Message message in deletedMessages)
-        {
-            Messages.Remove(message);
-        }
-
     }
 
     public void StartExecuting()

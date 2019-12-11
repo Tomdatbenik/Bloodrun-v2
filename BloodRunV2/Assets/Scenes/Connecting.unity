@@ -341,7 +341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758868988}
-  - component: {fileID: 758868987}
   - component: {fileID: 758868989}
   m_Layer: 0
   m_Name: Bloodrun
@@ -350,18 +349,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &758868987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758868986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f323d58eb56d47c45ba26b06071b0d94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &758868988
 Transform:
   m_ObjectHideFlags: 0

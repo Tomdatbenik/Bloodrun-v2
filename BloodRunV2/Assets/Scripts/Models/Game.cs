@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : ScriptableObject
+public class Game
 {
     private List<PlayerInfo> players;
     private List<TrapInfo> traps;
