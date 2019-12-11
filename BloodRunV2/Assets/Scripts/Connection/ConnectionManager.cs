@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class ConnectionManager : MonoBehaviour
@@ -54,6 +55,12 @@ public class ConnectionManager : MonoBehaviour
     void OnApplicationQuit()
     {
         Message message = new Message(Username, "none", MessageType.DISCONNECT);
+
+        connection.TcpClient.Sender.TrySend(message);
+
+        Thread.Sleep(1000);
+
+        message = new Message(Username, "Has lost connection", MessageType.CHAT);
 
         connection.TcpClient.Sender.TrySend(message);
 
