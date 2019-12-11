@@ -12,6 +12,7 @@ public class ConnectionManager : MonoBehaviour
 
     public static string Username;
     public string IP;
+    public string username;
 
     public static Connection connection;
 
@@ -21,6 +22,7 @@ public class ConnectionManager : MonoBehaviour
 
     private void Start()
     {
+        Username = username;
         ReconnectButton.SetActive(false);
 
         connection = new Connection(IP);
