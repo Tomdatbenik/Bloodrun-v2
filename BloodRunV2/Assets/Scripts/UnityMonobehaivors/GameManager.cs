@@ -130,7 +130,6 @@ public class GameManager : MonoBehaviour
         {
             foreach (PlayerGameObjectData Playerdata in players)
             {
-
                 if (Playerdata.PlayerInfo.username == player.username && !IsCurrentPlayer(Playerdata.PlayerInfo))
                 {
                     float x = float.Parse(player.transform.location.x);
@@ -142,7 +141,7 @@ public class GameManager : MonoBehaviour
                     Vector3 location = new Vector3(x, y, z);
 
                     rb.MovePosition(location);
-                    gameObject.transform.position = location;
+                    Playerdata.Player.transform.position = location;
                     rb.rotation = new Quaternion(float.Parse(player.transform.rotation.x), float.Parse(player.transform.rotation.y), float.Parse(player.transform.rotation.z), float.Parse(player.transform.rotation.w));
                 }
             }

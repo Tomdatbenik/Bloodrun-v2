@@ -120,6 +120,6 @@ public class UDPClient
 
     public void SendUdpMessage(Message message)
     {
-        
+        writer.SendUdpMessage(message);
     }
 }
