@@ -7,9 +7,7 @@ using UnityEngine;
 
 public class MessageExecutor
 {
-    private readonly SceneLogic sceneLogic = new SceneLogic();
-    private readonly GameLogic GameLogic = new GameLogic();
-    private readonly ChatLogic chatLogic = new ChatLogic();
+
 
     /// <summary>
     /// Thread where messages will be executed
@@ -39,16 +37,16 @@ public class MessageExecutor
                     switch (message.getType())
                     {
                         case MessageType.CONNECT:
-                            sceneLogic.LoadScene("Loading");
+                            ConnectionManager.sceneLogic.LoadScene("Loading");
                             break;
                         case MessageType.PING:
 
                             break;
                         case MessageType.GAME:
-                            GameLogic.HandleGameMessage(message);
+                            ConnectionManager.gameLogic.HandleGameMessage(message);
                             break;
                         case MessageType.CHAT:
-                            chatLogic.HandeChatMessage(message);
+                            ConnectionManager.chatLogic.HandeChatMessage(message);
                             break;
                     }
                 }
