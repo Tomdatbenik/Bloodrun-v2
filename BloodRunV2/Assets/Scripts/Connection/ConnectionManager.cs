@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class ConnectionManager : MonoBehaviour
 
     private void Start()
     {
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
         CurrentUsername = Username;
         ReconnectButton.SetActive(false);
 
