@@ -375,8 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f66237f3b989ea49bf0385525b2313d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IP: Tomdatbenik
-  username: 
+  Username: Tomdatbenik
+  IP: 
   ReconnectButton: {fileID: 21374848}
 --- !u!1 &1160939510
 GameObject:
