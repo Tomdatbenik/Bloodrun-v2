@@ -9,6 +9,6 @@ public class SceneLogic
     public void LoadScene(string sceneName)
     {
 
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }

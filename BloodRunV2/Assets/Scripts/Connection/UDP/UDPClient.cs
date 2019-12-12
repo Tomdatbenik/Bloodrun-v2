@@ -35,7 +35,7 @@ public class UDPClient
     /// <summary>
     /// Writer of udp messages
     /// </summary>
-    private UDPWriter writer;
+    private static UDPWriter writer;
 
     /// <summary>
     /// Listener of udp messages
@@ -47,6 +47,13 @@ public class UDPClient
     /// Thread where messages will be received
     /// </summary>
     private Thread receiveThread;
+
+
+    /// <summary>
+    /// Ip adress the udp writer will write to
+    /// </summary>
+    private string remoteIp;
+
 
     /// <summary>
     /// Propertie of writer of udp messages
@@ -74,8 +81,10 @@ public class UDPClient
     /// Constructor of udpclient
     /// </summary>
     /// <param name="Port">The port where the UDP message get send and received from.</param>
-    public UDPClient(int Port = 19224)
+    public UDPClient(string remoteIp,int Port = 19224)
     {
+        this.remoteIp = remoteIp;
+
         //Get ip of this device
         ip = "";
         var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -120,6 +129,6 @@ public class UDPClient
 
     public void SendUdpMessage(Message message)
     {
-        writer.SendUdpMessage(message);
+        writer.SendUdpMessage(message, remoteIp);
     }
 }

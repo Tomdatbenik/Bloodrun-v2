@@ -8,6 +8,7 @@ using UnityEngine;
 public class UDPListener
 {
     private UdpClient client;
+    private IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 10922);
 
     public UDPListener(UdpClient client)
     {
@@ -16,13 +17,18 @@ public class UDPListener
 
     private void recvUDP(IAsyncResult res)
     {
-        IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 10922);
-        byte[] received = client.EndReceive(res, ref RemoteIpEndPoint);
+        try
+        {
+            byte[] received = client.EndReceive(res, ref RemoteIpEndPoint);
 
-        //Process codes
-        Message message = Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(received)));
-
-        ConnectionManager.Executor.Add(message); 
+            Message message = Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(received)));
+            ConnectionManager.Executor.Add(message);
+            Debug.Log("Received message");
+        }
+        catch
+        { 
+            Debug.Log("Failed to receive udp");
+        }
 
         ReceiveDataUDP();
     }

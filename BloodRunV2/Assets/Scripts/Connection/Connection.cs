@@ -14,7 +14,7 @@ public class Connection
     {
         this.tcpClient = new TCPClient(Server, tcpPort);     
 
-        this.udpClient = new UDPClient();
+        this.udpClient = new UDPClient(Server);
     }
 
     public bool TryConnect()
