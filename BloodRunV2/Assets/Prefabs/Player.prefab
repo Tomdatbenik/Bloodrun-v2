@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2113585149688684476}
-  Explosion: {fileID: 0}
+  Explosion: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
   Spawnpoint: {fileID: 0}
   died: 0
   Enabled: 1
@@ -170,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 2113585149688684476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2113585149203393905}
   m_Father: {fileID: 0}

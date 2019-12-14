@@ -8,7 +8,6 @@ public class SceneLogic
 {
     public void LoadScene(string sceneName)
     {
-
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }

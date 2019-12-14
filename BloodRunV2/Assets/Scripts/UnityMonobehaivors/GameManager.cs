@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,10 +14,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerPrefab;
 
-    public List<PlayerGameObjectData> players;
-    public List<GameObject> traps;
+    private static List<PlayerGameObjectData> players;
+    private static List<TrapGameObjectData> Traps;
 
     public CinemachineVirtualCamera cam;
+
+    public GameObject AlwaysActiveTrap;
+    public GameObject RotateTrap;
+    public GameObject RotatingDarter;
+    public GameObject Darter;
+    public GameObject Spiketrap;
+
+
+    private static bool isInit = true;
 
 
     private void Start()
@@ -26,12 +36,27 @@ public class GameManager : MonoBehaviour
 
     public void InitGame()
     {
-        GameObject bloodrun = GameObject.Find("Bloodrun");
-        connectionManager = bloodrun.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
-        SpawnPlayers();
+        if(isInit)
+        {
+            isInit = false;
+            GameObject bloodrun = GameObject.Find("Bloodrun");
+            connectionManager = bloodrun.GetComponent(typeof(ConnectionManager)) as ConnectionManager;
+
+            if(connectionManager == null)
+            {
+                isInit = true;
+            }
+            else
+            {
+                SpawnPlayers();
+                SpawnTraps();
+            }
+
+        }
+   
     }
 
-    #region SpawnPlayers
+    #region Spawns
 
     private void SpawnPlayers()
     {
@@ -69,6 +94,51 @@ public class GameManager : MonoBehaviour
 
                 players.Add(playerdata);
             }
+        }
+    }
+
+    private void SpawnTraps()
+    {
+        Traps = new List<TrapGameObjectData>();
+
+        foreach (TrapInfo trap in game.GetTraps)
+        {
+            TrapGameObjectData trapData = new TrapGameObjectData();
+            trapData.TrapInfo = trap;
+
+            switch (trap.type)
+            {
+                //case TrapType.AlwaysActiveTrap:
+                //    trapData.Trap = AlwaysActiveTrap;
+                //    break;
+                case TrapType.RotateTrap:
+                    trapData.Trap = RotateTrap;
+                    break;
+                //case TrapType.RotatingDarter:
+                //    trapData.Trap = RotatingDarter;
+                //    break;
+                //case TrapType.Darter:
+                //    trapData.Trap = Darter;
+                //    break;
+                case TrapType.SpikeTrap:
+                    trapData.Trap = Spiketrap;
+                    break;
+                default:
+                    trapData.Trap = Spiketrap;
+                    break;
+            }
+
+            trapData.Trap = Instantiate(trapData.Trap);
+
+            if (trap.type == TrapType.AlwaysActiveTrap || trap.type == TrapType.SpikeTrap)
+            {
+                trapData.Trap.transform.localScale = new Vector3(float.Parse(trap.scale.x), float.Parse(trap.scale.y), float.Parse(trap.scale.z));
+            }
+
+            trapData.Trap.transform.position = new Vector3(float.Parse(trap.transform.location.x), float.Parse(trap.transform.location.y), float.Parse(trap.transform.location.z));
+            trapData.Trap.transform.rotation = new Quaternion(float.Parse(trap.transform.rotation.x), float.Parse(trap.transform.rotation.y), float.Parse(trap.transform.rotation.z), float.Parse(trap.transform.rotation.w));
+
+            Traps.Add(trapData);
         }
     }
 
@@ -148,8 +218,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ActivateTraps()
+    {
+        foreach (TrapGameObjectData trap in Traps)
+        {
+            TrapInfo trapInfo = game.GetTraps.Find(x => trap.TrapInfo.id == x.id);
+
+            trap.TrapInfo = trapInfo;
+
+            switch (trap.TrapInfo.type)
+            {
+                case TrapType.RotateTrap:
+                    trap.Trap.transform.rotation = transform.rotation = Quaternion.AngleAxis(float.Parse(trapInfo.transform.rotation.y), Vector3.up);
+                    break;
+                //case TrapType.RotatingDarter:
+                //    gameObject = RotatingDarter;
+                //    break;
+                case TrapType.Darter:
+                    //ShootDart shootDart = trapInfo.trap.GetComponent(typeof(ShootDart)) as ShootDart;
+                    //if (trapInfo.activated)
+                    //{
+                    //    shootDart.Shoot();
+                    //}
+                    break;
+                case TrapType.SpikeTrap:
+                    SpikeTrap spiketrap = trap.Trap.GetComponent(typeof(SpikeTrap)) as SpikeTrap;
+                    if (trapInfo.activated)
+                    {
+                        spiketrap.Activate();
+                    }
+                    else
+                    {
+                        spiketrap.DeActivate();
+                    }
+                    break;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
-        MovePlayers();
+        if(connectionManager != null)
+        {
+            MovePlayers();
+            ActivateTraps();
+        }
     }
 }

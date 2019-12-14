@@ -32,6 +32,13 @@ public class ScaleInfo
         scale.y = (string)token.SelectToken("y");
         scale.z = (string)token.SelectToken("z");
 
+        if (CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator == ".")
+        {
+            scale.x = scale.x.Replace(",", ".");
+            scale.y = scale.y.Replace(",", ".");
+            scale.z = scale.z.Replace(",", ".");
+        }
+
         return scale;
     }
 }

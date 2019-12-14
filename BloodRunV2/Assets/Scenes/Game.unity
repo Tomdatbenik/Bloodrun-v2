@@ -197,8 +197,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68123378}
-  m_LocalRotation: {x: 0.15010312, y: 0.000000032942506, z: -0.0000000050014375, w: 0.98867035}
-  m_LocalPosition: {x: -10, y: 1.8000011, z: -21.800003}
+  m_LocalRotation: {x: -0.2297529, y: -0.00000004778891, z: 0.00000009010294, w: -0.973249}
+  m_LocalPosition: {x: -10, y: -6, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 514476659}
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 16.1, z: -51.800003}
+  m_FollowOffset: {x: 0, y: 50, z: -50}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -520,8 +520,14 @@ MonoBehaviour:
   Spawnpoint: {fileID: 748664494}
   playerPrefab: {fileID: 2113585149688684476, guid: df76c637e5b339049979eb4f75e0b5c3,
     type: 3}
-  traps: []
   cam: {fileID: 1920132170}
+  AlwaysActiveTrap: {fileID: 0}
+  RotateTrap: {fileID: 3299353871211859202, guid: 88107173cb6da794da1a3ad9d6a63f63,
+    type: 3}
+  RotatingDarter: {fileID: 100002, guid: 9bf07121db191094aa8381ef67016a19, type: 3}
+  Darter: {fileID: 0}
+  Spiketrap: {fileID: 1712723599047206713, guid: f932af677931fc54b8222b5fb2542d31,
+    type: 3}
 --- !u!4 &1673331872
 Transform:
   m_ObjectHideFlags: 0
@@ -895,8 +901,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920132168}
-  m_LocalRotation: {x: 0.15010312, y: 0.000000032942506, z: -0.0000000050014375, w: 0.98867035}
-  m_LocalPosition: {x: -10, y: 1.8000011, z: -21.800003}
+  m_LocalRotation: {x: -0.2297529, y: -0.00000004778891, z: 0.00000009010294, w: -0.973249}
+  m_LocalPosition: {x: -10, y: -6, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775689702}

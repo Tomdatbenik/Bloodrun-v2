@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class RotationInfo
@@ -34,6 +35,14 @@ public class RotationInfo
         rotation.y = (string)token.SelectToken("y");
         rotation.z = (string)token.SelectToken("z");
         rotation.w = (string)token.SelectToken("w");
+
+        if (CultureInfo.InvariantCulture.NumberFormat.NumberDecimalSeparator == ".")
+        {
+            rotation.x = rotation.x.Replace(",", ".");
+            rotation.y = rotation.y.Replace(",", ".");
+            rotation.z = rotation.z.Replace(",", ".");
+            rotation.w = rotation.w.Replace(",", ".");
+        }
 
         return rotation;
     }
