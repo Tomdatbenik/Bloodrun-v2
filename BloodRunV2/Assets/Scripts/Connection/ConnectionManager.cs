@@ -26,6 +26,14 @@ public class ConnectionManager : MonoBehaviour
     {
         CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
+        SettingsReader settingsReader = new SettingsReader();
+
+        if(Username == "" && IP == "")
+        {
+            Username = settingsReader.Username;
+            IP = settingsReader.IP;
+        }
+
         CurrentUsername = Username;
         ReconnectButton.SetActive(false);
 

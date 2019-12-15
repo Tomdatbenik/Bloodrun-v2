@@ -525,7 +525,7 @@ MonoBehaviour:
   RotateTrap: {fileID: 3299353871211859202, guid: 88107173cb6da794da1a3ad9d6a63f63,
     type: 3}
   RotatingDarter: {fileID: 100002, guid: 9bf07121db191094aa8381ef67016a19, type: 3}
-  Darter: {fileID: 0}
+  Darter: {fileID: 1136569725512471848, guid: 55ae3904918449e44a7133015f7336d2, type: 3}
   Spiketrap: {fileID: 1712723599047206713, guid: f932af677931fc54b8222b5fb2542d31,
     type: 3}
 --- !u!4 &1673331872

@@ -117,9 +117,9 @@ public class GameManager : MonoBehaviour
                 //case TrapType.RotatingDarter:
                 //    trapData.Trap = RotatingDarter;
                 //    break;
-                //case TrapType.Darter:
-                //    trapData.Trap = Darter;
-                //    break;
+                case TrapType.Darter:
+                    trapData.Trap = Darter;
+                    break;
                 case TrapType.SpikeTrap:
                     trapData.Trap = Spiketrap;
                     break;
@@ -235,11 +235,11 @@ public class GameManager : MonoBehaviour
                 //    gameObject = RotatingDarter;
                 //    break;
                 case TrapType.Darter:
-                    //ShootDart shootDart = trapInfo.trap.GetComponent(typeof(ShootDart)) as ShootDart;
-                    //if (trapInfo.activated)
-                    //{
-                    //    shootDart.Shoot();
-                    //}
+                    ShootDart shootDart = trap.Trap.GetComponent(typeof(ShootDart)) as ShootDart;
+                    if (trap.TrapInfo.activated)
+                    {
+                        shootDart.Shoot();
+                    }
                     break;
                 case TrapType.SpikeTrap:
                     SpikeTrap spiketrap = trap.Trap.GetComponent(typeof(SpikeTrap)) as SpikeTrap;
