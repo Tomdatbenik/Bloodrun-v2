@@ -47,6 +47,8 @@ public class PlayerDeath : MonoBehaviour
             player.transform.position = Spawnpoint.transform.position + new Vector3(0f, 1f, 0f);
             deadposition = null;
             died = false;
+            Rigidbody rigidbody = player.GetComponent<Rigidbody>();
+            rigidbody.velocity = Vector3.zero;
         }
     }
 }
