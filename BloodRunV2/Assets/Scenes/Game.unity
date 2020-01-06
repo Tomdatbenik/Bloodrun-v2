@@ -953,6 +953,36 @@ MonoBehaviour:
   textObject: {fileID: 4208755840847821845, guid: 100a908a2feb76b4481999c1a99e002c,
     type: 3}
   chatField: {fileID: 2000248589}
+--- !u!1 &1588638482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1588638483}
+  m_Layer: 0
+  m_Name: PlayerLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1588638483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588638482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1673331870
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1023,7 @@ MonoBehaviour:
   Darter: {fileID: 1136569725512471848, guid: 55ae3904918449e44a7133015f7336d2, type: 3}
   Spiketrap: {fileID: 1712723599047206713, guid: f932af677931fc54b8222b5fb2542d31,
     type: 3}
+  PlayerLookAt: {fileID: 1588638482}
 --- !u!4 &1673331872
 Transform:
   m_ObjectHideFlags: 0

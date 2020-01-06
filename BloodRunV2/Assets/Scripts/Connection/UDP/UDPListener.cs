@@ -23,7 +23,6 @@ public class UDPListener
 
             Message message = Message.FromJson(System.Text.Encoding.UTF8.GetString(Compressor.Decompress(received)));
             ConnectionManager.Executor.Add(message);
-            Debug.Log("Received message");
         }
         catch
         { 

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject RotatingDarter;
     public GameObject Darter;
     public GameObject Spiketrap;
-
+    public GameObject PlayerLookAt;
 
     private static bool isInit = true;
 
@@ -78,11 +78,13 @@ public class GameManager : MonoBehaviour
                     cam.Follow = playerdata.Player.transform;
                     cam.LookAt = playerdata.Player.transform;
                     playerdata.Player.tag = "Player";
+                    PlayerMovement playerMovement = playerbodydata.body.GetComponent(typeof(PlayerMovement)) as PlayerMovement;
+                    playerMovement.PlayerLookAt = PlayerLookAt;
                 }
                 else
                 {
                     RemovePlayerMovement(playerbodydata.body);
-
+                    playerbodydata.body.tag = "OtherPlayer";
                     playerdata.Player.tag = "OtherPlayer";
                 }
 
@@ -212,6 +214,12 @@ public class GameManager : MonoBehaviour
 
                     rb.MovePosition(location);
                     Playerdata.Player.transform.position = location;
+                    PlayerBodyData playerbodydata = GetPlayerBodyData(Playerdata.Player);
+
+                    Attacking attacking = playerbodydata.body.GetComponent<Attacking>();
+                    Debug.Log(player.pushing);
+                    attacking.attacking = player.pushing;
+                    rb = playerbodydata.body.GetComponent(typeof(Rigidbody)) as Rigidbody;
                     rb.rotation = new Quaternion(float.Parse(player.transform.rotation.x), float.Parse(player.transform.rotation.y), float.Parse(player.transform.rotation.z), float.Parse(player.transform.rotation.w));
                 }
             }

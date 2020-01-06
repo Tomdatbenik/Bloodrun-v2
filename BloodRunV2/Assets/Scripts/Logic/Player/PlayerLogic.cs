@@ -10,4 +10,10 @@ public class PlayerLogic
 
         ConnectionManager.connection.UdpClient.SendUdpMessage(message);
     }
+
+    public void PlayerPushing(PlayerInfo player)
+    {
+        Message message = new Message(player.username, player.ToJson(), MessageType.PUSHING);
+        ConnectionManager.connection.UdpClient.SendUdpMessage(message);
+    }
 }
