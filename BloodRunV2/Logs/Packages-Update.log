@@ -27,3 +27,13 @@ The following packages were added:
   com.unity.2d.tilemap@1.0.0
   com.unity.postprocessing@2.1.4
   com.unity.progrids@3.0.3-preview.4
+
+=== Mon Jan 13 15:38:22 2020
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.recorder@2.0.3-preview.1
+The following packages were updated:
+  com.unity.postprocessing from version 2.1.4 to 2.1.7

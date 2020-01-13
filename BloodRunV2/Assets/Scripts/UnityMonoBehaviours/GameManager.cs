@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject Spawnpoint;
 
-    public GameObject playerPrefab;
+    public List<GameObject> PlayersCharacters;
+    private int characterIndex = 0;
 
     private static List<PlayerGameObjectData> players;
     private static List<TrapGameObjectData> Traps;
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
             if (PlayerIsNotNull(player))
             {
                 playerdata.PlayerInfo.username = player.username;
-                playerdata.Player = Instantiate(playerPrefab);
+                playerdata.Player = Instantiate(PlayersCharacters[characterIndex]);
 
                 PlayerBodyData playerbodydata = GetPlayerBodyData(playerdata.Player);
 
@@ -90,6 +91,8 @@ public class GameManager : MonoBehaviour
                     playerbodydata.body.tag = "OtherPlayer";
                     playerdata.Player.tag = "OtherPlayer";
                 }
+
+                characterIndex++;
 
                 SetTransformFromTransformInfo(playerdata.Player, player.transform);
                 
