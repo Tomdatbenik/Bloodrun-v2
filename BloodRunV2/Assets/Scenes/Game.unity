@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawnpoint: {fileID: 748664494}
   PlayersCharacters:
-  - {fileID: 1568784710738816886, guid: d6066eac1855fa24c80e31599b995b13, type: 3}
+  - {fileID: 2113585149688684476, guid: df76c637e5b339049979eb4f75e0b5c3, type: 3}
   - {fileID: 1568784710738816886, guid: d6066eac1855fa24c80e31599b995b13, type: 3}
   - {fileID: 1568784710738816886, guid: 21f6003d15add0c4ea9dc016a3e116bf, type: 3}
   - {fileID: 1568784710738816886, guid: 4f80cd2ab4ecc8f43b2803935928cd61, type: 3}
