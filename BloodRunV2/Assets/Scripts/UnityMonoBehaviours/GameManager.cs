@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject Darter;
     public GameObject Spiketrap;
     public GameObject PlayerLookAt;
+    public GameObject Finish;
 
     private static bool isInit = true;
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
             {
                 SpawnPlayers();
                 SpawnTraps();
+                SpawnFinish();
             }
 
         }
@@ -78,8 +80,9 @@ public class GameManager : MonoBehaviour
                     cam.Follow = playerdata.Player.transform;
                     cam.LookAt = playerdata.Player.transform;
                     playerdata.Player.tag = "Player";
+                    playerbodydata.body.tag = "Player";
                     PlayerMovement playerMovement = playerbodydata.body.GetComponent(typeof(PlayerMovement)) as PlayerMovement;
-                    playerMovement.PlayerLookAt = PlayerLookAt;
+                    playerMovement.PlayerRotationSameAs = PlayerLookAt;
                 }
                 else
                 {
@@ -97,6 +100,28 @@ public class GameManager : MonoBehaviour
                 players.Add(playerdata);
             }
         }
+    }
+
+    private void SpawnFinish()
+    {
+        GameObject finish = Instantiate(Finish);
+        finish.transform.position = new Vector3(
+            float.Parse(game.GetFinish.transform.location.x), 
+            float.Parse(game.GetFinish.transform.location.y), 
+            float.Parse(game.GetFinish.transform.location.z));
+
+        finish.transform.rotation = new Quaternion(
+            float.Parse(game.GetFinish.transform.rotation.x),
+            float.Parse(game.GetFinish.transform.rotation.y),
+            float.Parse(game.GetFinish.transform.rotation.z),
+            float.Parse(game.GetFinish.transform.rotation.w)
+            );
+
+        finish.transform.localScale = new Vector3(
+            float.Parse(game.GetFinish.scale.x), 
+            float.Parse(game.GetFinish.scale.y), 
+            float.Parse(game.GetFinish.scale.z));
+
     }
 
     private void SpawnTraps()

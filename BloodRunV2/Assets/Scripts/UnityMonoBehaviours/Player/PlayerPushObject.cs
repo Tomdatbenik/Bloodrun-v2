@@ -18,11 +18,10 @@ public class PlayerPushObject : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "OtherPlayer") 
+        if (other.tag == "OtherPlayer" || other.tag == "Player") 
         {
             Rigidbody rb = other.GetComponent<Rigidbody>();
-            Debug.DrawRay(other.gameObject.transform.position, player.transform.position, Color.red);
-            rb.AddForce(other.gameObject.transform.position + player.transform.position * 100f);
+            rb.AddForce(Vector3.forward * 2000f);
         }
     }
 }

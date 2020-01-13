@@ -11,5 +11,6 @@ public enum MessageType
     MOVE = 3,
     GAME = 5,
     CHAT = 7,
-    PUSHING = 8
+    PUSHING = 8,
+    FINISH = 9
 }

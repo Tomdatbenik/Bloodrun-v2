@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChatLogic
 {
-    public void HandeChatMessage(Message message)
+    public void HandleChatMessage(Message message)
     {
         ChatMessage chatMessage = new ChatMessage(message.content, message.sender);
         ChatManager.ChatMessage = chatMessage;

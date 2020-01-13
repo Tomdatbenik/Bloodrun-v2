@@ -1024,6 +1024,7 @@ MonoBehaviour:
   Spiketrap: {fileID: 1712723599047206713, guid: f932af677931fc54b8222b5fb2542d31,
     type: 3}
   PlayerLookAt: {fileID: 1588638482}
+  Finish: {fileID: 6336422902381631332, guid: 3aa558102226fff418742aafd908e469, type: 3}
 --- !u!4 &1673331872
 Transform:
   m_ObjectHideFlags: 0

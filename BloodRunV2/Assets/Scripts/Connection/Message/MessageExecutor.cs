@@ -46,7 +46,10 @@ public class MessageExecutor
                             ConnectionManager.gameLogic.HandleGameMessage(message);
                             break;
                         case MessageType.CHAT:
-                            ConnectionManager.chatLogic.HandeChatMessage(message);
+                            ConnectionManager.chatLogic.HandleChatMessage(message);
+                            break;
+                        case MessageType.FINISH:
+                            ConnectionManager.gameLogic.SetFinish(message);
                             break;
                     }
                 }

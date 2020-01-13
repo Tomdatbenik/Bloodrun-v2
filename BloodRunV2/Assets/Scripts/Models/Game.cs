@@ -9,9 +9,12 @@ public class Game
 {
     private List<PlayerInfo> players;
     private List<TrapInfo> traps;
+    private FinishInfo finish;
 
     public List<PlayerInfo> GetPlayers { get { return players; } }
     public List<TrapInfo> GetTraps { get { return traps; } }
+
+    public FinishInfo GetFinish { get { return finish; } }
 
     public Game()
     {
@@ -30,6 +33,8 @@ public class Game
             game.players = GetPlayersFromJObject(jObject);
 
             game.traps = GetTrapsFromJObject(jObject);
+
+            game.finish = GetFinishFromJObject(jObject);
 
             return game;
         }
@@ -68,5 +73,12 @@ public class Game
         }
 
         return players;
+    }
+
+    private static FinishInfo GetFinishFromJObject(JObject jObject)
+    {
+        JToken token = jObject.SelectToken("finish");
+
+        return FinishInfo.FromJson(token);
     }
 }

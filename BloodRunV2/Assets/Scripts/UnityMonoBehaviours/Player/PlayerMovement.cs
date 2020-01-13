@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public int speed;
     public Animator Animator;
-    public GameObject PlayerLookAt;
+    public GameObject PlayerRotationSameAs;
     public Attacking attacking;
 
     private int initspeed;
@@ -77,10 +77,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 CamCenter = Camera.main.transform.position;
         Ray mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        PlayerLookAt.transform.position = new Vector3(CamCenter.x, mousePos.origin.y, CamCenter.z);
-        PlayerLookAt.transform.LookAt(mousePos.origin);
+        PlayerRotationSameAs.transform.position = new Vector3(CamCenter.x, mousePos.origin.y, CamCenter.z);
+        PlayerRotationSameAs.transform.LookAt(mousePos.origin);
 
-        Quaternion rotation = PlayerLookAt.transform.rotation;
+        Quaternion rotation = PlayerRotationSameAs.transform.rotation;
 
         transform.rotation = rotation;
     }
