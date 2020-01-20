@@ -7,7 +7,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject player;
     public GameObject Explosion;
     public GameObject Spawnpoint;
-    private GameObject deadposition;
+    public GameObject deadposition;
     public bool died;
     public bool Enabled = true;
 

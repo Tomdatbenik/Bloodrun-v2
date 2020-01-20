@@ -101,6 +101,9 @@ public class PlayerMovement : MonoBehaviour
         player.transform.rotation.z = gameObject.transform.rotation.z.ToString();
         player.transform.rotation.w = gameObject.transform.rotation.w.ToString();
 
+        player.running = Animator.GetBool("Running");
+        player.vertical = Animator.GetFloat("Vertical");
+
         return player;
     }
 

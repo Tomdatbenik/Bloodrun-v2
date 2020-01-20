@@ -8,6 +8,8 @@ public class PlayerInfo
     public TransformInfo transform;
     public bool Connected = false;
     public bool pushing = false;
+    public bool running = false;
+    public float vertical = 0;
 
     public PlayerInfo()
     {
@@ -29,6 +31,8 @@ public class PlayerInfo
         player.transform = TransformInfo.FromJson(jToken.SelectToken("transform"));
         player.Connected = (bool)jToken.SelectToken("connected");
         player.pushing = (bool)jToken.SelectToken("pushing");
+        player.running = (bool)jToken.SelectToken("running");
+        player.vertical = (float)jToken.SelectToken("vertical");
         return player;
     }
 

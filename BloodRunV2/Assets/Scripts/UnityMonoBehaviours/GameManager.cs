@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject Spawnpoint;
 
     public List<GameObject> PlayersCharacters;
+    public GameObject tomdatbenik;
     private int characterIndex = 0;
 
-    private static List<PlayerGameObjectData> players;
+    public static List<PlayerGameObjectData> players;
     private static List<TrapGameObjectData> Traps;
 
     public CinemachineVirtualCamera cam;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject Spiketrap;
     public GameObject PlayerLookAt;
     public GameObject Finish;
+    public GameObject Checkpoint;
 
     private static bool isInit = true;
 
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
                 SpawnPlayers();
                 SpawnTraps();
                 SpawnFinish();
+                SpawnCheckpoints();
             }
 
         }
@@ -72,7 +75,15 @@ public class GameManager : MonoBehaviour
             if (PlayerIsNotNull(player))
             {
                 playerdata.PlayerInfo.username = player.username;
-                playerdata.Player = Instantiate(PlayersCharacters[characterIndex]);
+                if(player.username == "Tomdatbenik")
+                {
+                    playerdata.Player = Instantiate(tomdatbenik);
+                }
+                else
+                {
+                    playerdata.Player = Instantiate(PlayersCharacters[characterIndex]);
+                }
+
 
                 PlayerBodyData playerbodydata = GetPlayerBodyData(playerdata.Player);
 
@@ -126,6 +137,27 @@ public class GameManager : MonoBehaviour
             float.Parse(game.GetFinish.scale.z));
 
     }
+
+
+    private void SpawnCheckpoints()
+    {
+        List<GameObject> checkpoints = new List<GameObject>();
+
+        foreach (CheckpointInfo checkpointInfo in game.GetCheckpoints)
+        {
+            GameObject checkpoint = new GameObject();
+
+            checkpoint = Instantiate(Checkpoint);
+
+            checkpoint.transform.position = new Vector3(float.Parse(checkpointInfo.transform.location.x), float.Parse(checkpointInfo.transform.location.y), float.Parse(checkpointInfo.transform.location.z));
+            checkpoint.transform.rotation = new Quaternion(float.Parse(checkpointInfo.transform.rotation.x), float.Parse(checkpointInfo.transform.rotation.y), float.Parse(checkpointInfo.transform.rotation.z), float.Parse(checkpointInfo.transform.rotation.w));
+            checkpoint.transform.localScale = new Vector3(
+            float.Parse(checkpointInfo.scale.x),
+            float.Parse(checkpointInfo.scale.y),
+            float.Parse(checkpointInfo.scale.z));
+        }
+    }
+
 
     private void SpawnTraps()
     {
@@ -245,7 +277,12 @@ public class GameManager : MonoBehaviour
                     PlayerBodyData playerbodydata = GetPlayerBodyData(Playerdata.Player);
 
                     Attacking attacking = playerbodydata.body.GetComponent<Attacking>();
-                    Debug.Log(player.pushing);
+
+                    Animator animator = playerbodydata.body.GetComponent<Animator>();
+
+                    animator.SetBool("Running",player.running);
+                    animator.SetFloat("Vertical", player.vertical);
+
                     attacking.attacking = player.pushing;
                     rb = playerbodydata.body.GetComponent(typeof(Rigidbody)) as Rigidbody;
                     rb.rotation = new Quaternion(float.Parse(player.transform.rotation.x), float.Parse(player.transform.rotation.y), float.Parse(player.transform.rotation.z), float.Parse(player.transform.rotation.w));

@@ -97,6 +97,11 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 5567882816401670294}
+    - target: {fileID: 5031806064744779420, guid: df76c637e5b339049979eb4f75e0b5c3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6b2d8a43a0cc98469f5e679965e76a0, type: 2}
     - target: {fileID: 2989057741430222196, guid: df76c637e5b339049979eb4f75e0b5c3,
         type: 3}
       propertyPath: m_IsActive
@@ -117,11 +122,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f6b2d8a43a0cc98469f5e679965e76a0, type: 2}
-    - target: {fileID: 5031806064744779420, guid: df76c637e5b339049979eb4f75e0b5c3,
+    - target: {fileID: 5031806064740610140, guid: df76c637e5b339049979eb4f75e0b5c3,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 2100000, guid: f6b2d8a43a0cc98469f5e679965e76a0, type: 2}
+      objectReference: {fileID: 9000000, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df76c637e5b339049979eb4f75e0b5c3, type: 3}
 --- !u!95 &5567882816401670294 stripped

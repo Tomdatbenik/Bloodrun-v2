@@ -9,10 +9,13 @@ public class Game
 {
     private List<PlayerInfo> players;
     private List<TrapInfo> traps;
+    private List<CheckpointInfo> checkpoints;
     private FinishInfo finish;
 
     public List<PlayerInfo> GetPlayers { get { return players; } }
     public List<TrapInfo> GetTraps { get { return traps; } }
+
+    public List<CheckpointInfo> GetCheckpoints { get { return checkpoints; } }
 
     public FinishInfo GetFinish { get { return finish; } }
 
@@ -33,7 +36,7 @@ public class Game
             game.players = GetPlayersFromJObject(jObject);
 
             game.traps = GetTrapsFromJObject(jObject);
-
+            game.checkpoints = GetCheckpointsFromJObject(jObject);
             game.finish = GetFinishFromJObject(jObject);
 
             return game;
@@ -80,5 +83,19 @@ public class Game
         JToken token = jObject.SelectToken("finish");
 
         return FinishInfo.FromJson(token);
+    }
+
+    private static List<CheckpointInfo> GetCheckpointsFromJObject(JObject jObject)
+    {
+        IEnumerable<JToken> jCheckpoints = jObject.SelectToken("checkpoints");
+
+        List<CheckpointInfo> checkpoints = new List<CheckpointInfo>();
+
+        foreach (JToken item in jCheckpoints)
+        {
+            checkpoints.Add(CheckpointInfo.FromJson(item));
+        }
+
+        return checkpoints;
     }
 }
