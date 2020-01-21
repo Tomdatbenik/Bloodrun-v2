@@ -71,8 +71,13 @@ public class Game
         for (int i = 1; i < 5; i++)
         {
             JToken Jplayer = Jplayers.SelectToken("player_" + i);
-            PlayerInfo player = PlayerInfo.FromJson(Jplayer);
-            players.Add(player);
+
+            if(Jplayer != null)
+            {
+                PlayerInfo player = PlayerInfo.FromJson(Jplayer);
+                players.Add(player);
+            }
+        
         }
 
         return players;
