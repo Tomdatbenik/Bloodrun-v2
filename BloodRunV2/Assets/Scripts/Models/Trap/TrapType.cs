@@ -8,5 +8,7 @@ public enum TrapType
     Darter = 2,
     AlwaysActiveTrap = 3,
     RotatingDarter = 4,
-    RotateTrap = 5
+    RotateTrap = 5,
+    ReverseRotateTrap = 6,
+    OffsetSpikeTrap = 7
 }

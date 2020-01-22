@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera cam;
 
     public GameObject AlwaysActiveTrap;
+    public GameObject ReverseRotateTrap;
     public GameObject RotateTrap;
     public GameObject RotatingDarter;
     public GameObject Darter;
     public GameObject Spiketrap;
+    public GameObject OffsetSpiketrap;
     public GameObject PlayerLookAt;
     public GameObject Finish;
     public GameObject Checkpoint;
@@ -176,6 +178,12 @@ public class GameManager : MonoBehaviour
                 case TrapType.RotateTrap:
                     trapData.Trap = RotateTrap;
                     break;
+                case TrapType.ReverseRotateTrap:
+                    trapData.Trap = RotateTrap;
+                    break;
+                case TrapType.OffsetSpikeTrap:
+                    trapData.Trap = OffsetSpiketrap;
+                    break;
                 //case TrapType.RotatingDarter:
                 //    trapData.Trap = RotatingDarter;
                 //    break;
@@ -192,7 +200,7 @@ public class GameManager : MonoBehaviour
 
             trapData.Trap = Instantiate(trapData.Trap);
 
-            if (trap.type == TrapType.AlwaysActiveTrap || trap.type == TrapType.SpikeTrap)
+            if (trap.type == TrapType.AlwaysActiveTrap || trap.type == TrapType.SpikeTrap || trap.type == TrapType.OffsetSpikeTrap)
             {
                 trapData.Trap.transform.localScale = new Vector3(float.Parse(trap.scale.x), float.Parse(trap.scale.y), float.Parse(trap.scale.z));
             }
@@ -304,9 +312,9 @@ public class GameManager : MonoBehaviour
                 case TrapType.RotateTrap:
                     trap.Trap.transform.rotation = transform.rotation = Quaternion.AngleAxis(float.Parse(trapInfo.transform.rotation.y), Vector3.up);
                     break;
-                //case TrapType.RotatingDarter:
-                //    gameObject = RotatingDarter;
-                //    break;
+                case TrapType.ReverseRotateTrap:
+                    trap.Trap.transform.rotation = transform.rotation = Quaternion.AngleAxis(float.Parse(trapInfo.transform.rotation.y), Vector3.up);
+                    break;
                 case TrapType.Darter:
                     ShootDart shootDart = trap.Trap.GetComponent(typeof(ShootDart)) as ShootDart;
                     if (trap.TrapInfo.activated)
@@ -323,6 +331,17 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         spiketrap.DeActivate();
+                    }
+                    break;
+                case TrapType.OffsetSpikeTrap:
+                    SpikeTrap OffsetSpiketrap = trap.Trap.GetComponent(typeof(SpikeTrap)) as SpikeTrap;
+                    if (trapInfo.activated)
+                    {
+                        OffsetSpiketrap.Activate();
+                    }
+                    else
+                    {
+                        OffsetSpiketrap.DeActivate();
                     }
                     break;
             }
