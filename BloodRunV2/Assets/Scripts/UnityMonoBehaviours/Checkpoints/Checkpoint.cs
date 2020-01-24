@@ -22,11 +22,12 @@ public class Checkpoint : MonoBehaviour
 
                 if(!set)
                 {
-                    set = !set;
                     playerDeath.deadposition = gameObject;
                     playerDeath.died = true;
                 }
             }
+
+            set = true;
         }
     }
 
